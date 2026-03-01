@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="bg-canvas"></div>
+
+<style>
+
+/* HERO */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 20%, #001f2f, #000814);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+}
+
+.typed-text {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    color: var(--bs-primary);
+}
+
+/* Sections */
+.section {
+    padding: 100px 0;
+}
+
+.feature-box {
+    padding: 30px;
+    border-radius: 16px;
+    background-color: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    transition: 0.3s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+</style>
+
+
+
+<!-- HERO -->
+<div class="hero">
+
+    <div class="container hero-content">
+        <h1>CyberCTF</h1>
+        <div class="typed-text">
+            <span id="typed"></span>
+        </div>
+
+        <div class="mt-5">
+            <a href="/challenges" class="btn btn-primary btn-lg me-3">Начать соревнование</a>
+            <a href="/register" class="btn btn-outline-primary btn-lg">Присоединиться</a>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section text-center">
+    <div class="container">
+        <h2>О нашей компании</h2>
+        <p class="col-lg-8 mx-auto mt-4">
+            CyberCTF — образовательная платформа в области информационной безопасности.
+            Мы создаём практические CTF-соревнования, обучающие программы
+            и развиваем сообщество специалистов по кибербезопасности.
+        </p>
+    </div>
+</div>
+
+<!-- FEATURES -->
+<div class="section text-center">
+    <div class="container">
+        <h2>Наши направления</h2>
+
+        <div class="row mt-5 g-4">
+
+            <div class="col-md-4">
+                <div class="feature-box h-100">
+                    <h4>🔐 Penetration Testing</h4>
+                    <p>Web, network, инфраструктурные атаки и защита.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-box h-100">
+                    <h4>🧠 Reverse Engineering</h4>
+                    <p>Анализ бинарей и исследование ПО.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-box h-100">
+                    <h4>🔢 Cryptography</h4>
+                    <p>Современные алгоритмы и практические атаки.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="section text-center">
+    <div class="container">
+        <h2>Мы в социальных сетях</h2>
+        <div class="mt-4">
+            <a href="https://t.me/yourchannel" class="me-4">Telegram</a>
+            <a href="https://vk.com/yourpage" class="me-4">VK</a>
+            <a href="https://github.com/yourorg" class="me-4">GitHub</a>
+            <a href="https://linkedin.com/company/yourcompany">LinkedIn</a>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+
+<!-- particles.js -->
+<script src="/themes/CyberCTF/static/js/particles.js"></script>
+
+<!-- typed.js -->
+<script src="/themes/CyberCTF/static/js/typed.js"></script>
+
+<script>
+var typed = new Typed("#typed", {
+  strings: [
+    "Advanced Cybersecurity Training Platform",
+    "Capture The Flag Competitions",
+    "Powered by SUAI",
+    "Hack. Learn. Dominate."
+  ],
+  typeSpeed: 50,
+  backSpeed: 30,
+  backDelay: 2000,
+  loop: true
+});
+</script>
+
+{% endblock %}

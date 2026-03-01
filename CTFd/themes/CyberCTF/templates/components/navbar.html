@@ -1,0 +1,253 @@
+<nav id="sidebar">
+
+<style>
+/* ===== SIDEBAR ===== */
+
+#sidebar {
+    position: fixed;
+    padding-top: 60px;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #00141f, #000a12);
+    border-right: 1px solid rgba(0,255,255,0.15);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+#sidebar.closed {
+    transform: translateX(-100%);
+}
+
+.sidebar-inner {
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 5px;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    color: #cfd8dc;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 16px;
+}
+
+.sidebar-menu a:hover {
+    background: rgba(0,255,255,0.1);
+    color: #00ffff;
+    transform: translateX(4px);
+}
+
+.sidebar-menu a.active {
+    background: rgba(0,255,255,0.15);
+    color: #00ffff;
+    border-left: 3px solid #00ffff;
+}
+
+/* ===== TOGGLE BUTTON ===== */
+
+#sidebarToggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2200;
+    background: rgba(0,255,255,0.15);
+    border: none;
+    color: #00ffff;
+    font-size: 20px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: 0.2s ease;
+}
+
+.sidebar-menu a img {
+    max-height: 28px;
+    vertical-align: middle;
+}
+
+.menu-logo ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-logo a{
+    display: block;
+    padding: 10px 15px;
+    border-radius: 6px;
+    color: #cfd8dc;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.menu-logo a:hover {
+    background: rgba(0,255,255,0.1);
+    color: #00ffff;
+    transform: translateX(4px);
+}
+
+.menu-logo a.active {
+    background: rgba(0,255,255,0.15);
+    color: #00ffff;
+    border-left: 3px solid #00ffff;
+}
+
+#sidebarToggle:hover {
+    background: rgba(0,255,255,0.3);
+}
+
+/* ===== MAIN CONTENT SHIFT ===== */
+
+main {
+    margin-left: 260px;
+    transition: margin-left 0.3s ease;
+}
+
+main.full {
+    margin-left: 0;
+}
+
+hr {
+    border-color: rgba(0,255,255,0.15);
+}
+</style>
+
+  <div class="sidebar-inner">
+
+    <div class="menu-logo">
+      <ul>
+        <li>
+          <a href="{{ url_for('views.static_html', route='/') }}" class="{% if request.path == '/' %}active{% endif %}">
+            {% if Configs.ctf_logo %}
+            <img src="{{ url_for('views.files', path=Configs.ctf_logo) }}"
+            alt="{{ Configs.ctf_name }}">
+            {% else %}
+            {{ Configs.ctf_name }}
+            {% endif %}
+          </a> 
+        </li>
+      </ul>
+    </div>
+      
+    <div class="sidebar-menu">
+      <ul>
+
+        {% for page in Plugins.user_menu_pages %}
+        <li>
+          <a href="{{ page.route }}"
+             class="{% if request.path.startswith(page.route) %}active{% endif %}">
+            {{ page.title }}
+          </a>
+        </li>
+        {% endfor %}
+
+        <li>
+          <a href="{{ url_for('users.listing') }}"
+             class="{% if request.endpoint == 'users.listing' %}active{% endif %}">
+            Users
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('teams.listing') }}"
+             class="{% if request.endpoint == 'teams.listing' %}active{% endif %}">
+            Teams
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('scoreboard.listing') }}"
+             class="{% if request.endpoint == 'scoreboard.listing' %}active{% endif %}">
+            Scoreboard
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('challenges.listing') }}"
+             class="{% if request.endpoint == 'challenges.listing' %}active{% endif %}">
+            Challenges
+          </a>
+        </li>
+        
+        {% if authed() %}
+        <hr>
+        
+        {% if is_admin() %} 
+        <li>
+          <a href="{{ url_for('admin.view') }}"
+             class="{% if request.endpoint == 'admin.view' %}active{% endif %}">
+            Admin panel
+          </a>
+        </li>
+        {% endif %}
+
+        <li>
+          <a href="{{ url_for('views.notifications') }}"
+             class="{% if request.endpoint == 'views.notifications' %}active{% endif %}">
+            Notifications
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('teams.private') }}"
+             class="{% if request.endpoint == 'teams.private' %}active{% endif %}">
+            Team
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('users.private') }}"
+             class="{% if request.endpoint == 'users.private' %}active{% endif %}">
+            Profile
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('views.settings') }}"
+             class="{% if request.endpoint == 'views.settings' %}active{% endif %}">
+            Settings
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ url_for('auth.logout') }}">
+            Logout
+          </a>
+        </li>
+        {% else %}
+        <hr>
+        <li>
+          <a href="{{ url_for('auth.login') }}">
+            Login
+          </a>
+        </li>
+        {% endif %}
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<button id="sidebarToggle">☰</button>
