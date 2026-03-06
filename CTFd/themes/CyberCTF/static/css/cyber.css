@@ -1,0 +1,106 @@
+/* CYBER THEME COLORS */
+
+:root{
+
+  --bs-body-bg: #000814;
+  --bs-body-color: #cfefff;
+
+  --bs-primary: #00e5ff;
+  --bs-primary-rgb: 0,229,255;
+
+  --bs-link-color: #00e5ff;
+  --bs-link-hover-color: #7ffcff;
+
+  --bs-border-color: rgba(0,255,255,0.2);
+
+}
+
+/* HEADERS */
+
+
+
+/* BADGES */
+
+.badge{
+  background: rgba(0,20,30,0.7);
+  border:1px solid rgba(0,255,255,0.25);
+  color:#00e5ff;
+}
+
+/* TABLE */
+
+.table{
+  --bs-table-bg: transparent;
+  --bs-table-border-color: rgba(0,255,255,0.2);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd){
+  --bs-table-bg-type: rgba(0,255,255,0.03);
+}
+
+.table a{
+  color:#00e5ff;
+}
+
+/* PROGRESS */
+
+.progress{
+  background: rgba(0,0,0,0.6);
+  border:1px solid rgba(0,255,255,0.2);
+}
+
+/* LINKS */
+
+a{
+  color:#00e5ff;
+}
+
+a:hover{
+  color:#7ffcff;
+}
+
+/* MODAL WINDOW */
+
+.modal-content{
+
+  background: rgba(0, 18, 30, 0.9);
+  border: 1px solid rgba(0,255,255,0.25);
+
+  backdrop-filter: blur(8px);
+
+  color:#cfefff;
+
+  box-shadow:
+    0 0 15px rgba(0,255,255,0.15),
+    inset 0 0 10px rgba(0,255,255,0.08);
+
+}
+
+/* modal header */
+
+.modal-header{
+  border-bottom:1px solid rgba(0,255,255,0.15);
+}
+
+.modal-header h5{
+  color:#00e5ff;
+  text-shadow:0 0 8px rgba(0,255,255,0.4);
+}
+
+/* modal body */
+
+.modal-body{
+  color:#cfefff;
+}
+
+/* modal footer */
+
+.modal-footer{
+  border-top:1px solid rgba(0,255,255,0.15);
+}
+
+/* close button */
+
+.modal-header .btn-close{
+  filter: invert(1) brightness(1.5);
+}

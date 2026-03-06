@@ -40,7 +40,8 @@
         {% endif %}
 
         {% with form = Forms.auth.LoginForm() %}
-          <form method="post" accept-charset="utf-8">
+          <form method="post" accept-charset="utf-8"
+      action="{{ url_for('auth.login', next='/') }}">
             <div class="mb-3">
               <b>{{ form.name.label(class="form-label") }}</b>
               {{ form.name(class="form-control", value=name, autocomplete="username email") }}

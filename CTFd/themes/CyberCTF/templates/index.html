@@ -162,10 +162,23 @@
             <span id="typed"></span>
         </div>
 
+
+
+        {% if authed() %}
+
         <div class="mt-5">
-            <a href="/challenges" class="btn btn-primary btn-lg me-3">Начать соревнование</a>
-            <a href="/register" class="btn btn-outline-primary btn-lg">Присоединиться</a>
+            <a href="/challenges" class="btn btn-primary btn-lg me-3">Challenges</a>
+            <a href="/register" class="btn btn-outline-primary btn-lg">Scoreboard</a>
         </div>
+
+        {% else %}
+
+        <div class="mt-5">
+            <a href="/challenges" class="btn btn-primary btn-lg me-3">Login</a>
+            <a href="/register" class="btn btn-outline-primary btn-lg">Register</a>
+        </div>
+
+        {% endif %}
     </div>
 </div>
 

@@ -16,6 +16,74 @@
   padding-top: 100px;
   padding-bottom: 100px;
 }
+
+.category-header h3{
+    color:#00e5ff;
+    font-weight:600;
+    letter-spacing:1px;
+    border-left:3px solid #00e5ff;
+    padding-left:12px;
+    text-shadow:0 0 10px rgba(0,255,255,0.4);
+}
+
+
+.challenge-button{
+
+    background: rgba(0,15,25,0.8) !important;
+    border:1px solid rgba(0,255,255,0.15) !important;
+    border-radius:10px;
+
+    transition: all 0.2s ease;
+    backdrop-filter: blur(6px);
+
+    color:#cfefff !important;
+}
+
+.challenge-button:hover{
+
+    border-color:#00e5ff !important;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 10px rgba(0,255,255,0.2),
+        inset 0 0 8px rgba(0,255,255,0.1);
+
+}
+
+
+/* SOLVED CHALLENGE */
+
+.challenge-button.challenge-solved{
+
+    border:1px solid rgba(0,255,120,0.6) !important;
+
+    background: rgba(0,255,120,0.08) !important;
+
+    box-shadow:
+        0 0 10px rgba(0,255,120,0.25),
+        inset 0 0 6px rgba(0,255,120,0.15);
+
+}
+
+
+/* hover solved */
+
+.challenge-button.challenge-solved:hover{
+
+    border-color:#00ff88 !important;
+
+    box-shadow:
+        0 0 14px rgba(0,255,120,0.35),
+        inset 0 0 8px rgba(0,255,120,0.2);
+
+}
+
+h1,h2,h3,h4,h5{
+  color:#00e5ff;
+  text-shadow:0 0 10px rgba(0,255,255,0.4);
+}
+
 </style>
 <script src="/themes/CyberCTF/static/js/particles.js"></script>
 

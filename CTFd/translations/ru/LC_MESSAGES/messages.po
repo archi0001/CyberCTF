@@ -314,8 +314,8 @@ msgid "Search for matching users"
 msgstr "Поиск совпадающих пользователей"
 
 #: CTFd/themes/core-beta/templates/base.html:53
-msgid "Powered by CTFd"
-msgstr "Разработано CTFd"
+msgid "Powered by SUAI"
+msgstr "Разработано SUAI"
 
 #: CTFd/themes/core-beta/templates/challenge.html:11
 #: CTFd/themes/core-beta/templates/teams/private.html:388
