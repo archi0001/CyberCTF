@@ -1,25 +1,25 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const sidebar = document.getElementById("sidebar");
-    const toggle = document.getElementById("sidebarToggle");
-    const main = document.querySelector("main");
+// document.addEventListener("DOMContentLoaded", function () {
+//     const sidebar = document.getElementById("sidebar");
+//     const toggle = document.getElementById("sidebarToggle");
+//     const main = document.querySelector("main");
 
-    // Восстанавливаем состояние
-    if (localStorage.getItem("sidebar") === "closed") {
-        sidebar.classList.add("closed");
-        main.classList.add("full");
-    }
+//     // Восстанавливаем состояние
+//     if (localStorage.getItem("sidebar") === "closed") {
+//         sidebar.classList.add("closed");
+//         main.classList.add("full");
+//     }
 
-    toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("closed");
-        main.classList.toggle("full");
+//     toggle.addEventListener("click", () => {
+//         sidebar.classList.toggle("closed");
+//         main.classList.toggle("full");
 
-        if (sidebar.classList.contains("closed")) {
-            localStorage.setItem("sidebar", "closed");
-        } else {
-            localStorage.setItem("sidebar", "open");
-        }
-    });
-});
+//         if (sidebar.classList.contains("closed")) {
+//             localStorage.setItem("sidebar", "closed");
+//         } else {
+//             localStorage.setItem("sidebar", "open");
+//         }
+//     });
+// });
 
 // document.addEventListener("DOMContentLoaded", function () {
 

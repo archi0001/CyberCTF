@@ -6,6 +6,29 @@
 
 <style>
 
+.hero-logo {
+    width: 120px;
+    margin-bottom: 25px;
+    animation: floatLogo 4s ease-in-out infinite;
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(74%)
+        sepia(88%)
+        saturate(700%)
+        hue-rotate(160deg)
+        brightness(105%)
+        contrast(101%)
+        drop-shadow(0 0 12px rgba(0,255,255,0.6));
+}
+
+@keyframes floatLogo {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+
 /* HERO */
 .hero {
     position: relative;
@@ -58,6 +81,72 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
+.glitch {
+    position: relative;
+    font-size: 4rem;
+    font-weight: 800;
+    color: #e6faff;
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 6px rgba(0,255,255,0.4),
+        0 0 14px rgba(0,200,255,0.3);
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    opacity: 0.6;
+}
+
+.glitch::before {
+    transform: translateX(1px);
+    color: #00eaff;
+    animation: glitch-soft-1 4s infinite ease-in-out;
+}
+
+.glitch::after {
+    transform: translateX(-1px);
+    color: #00bfff;
+    animation: glitch-soft-2 5s infinite ease-in-out;
+}
+
+@keyframes glitch-soft-1 {
+    0%, 90%, 100% {
+        clip-path: inset(0 0 0 0);
+        transform: translateX(1px);
+    }
+
+    92% {
+        clip-path: inset(40% 0 40% 0);
+        transform: translateX(2px);
+    }
+
+    95% {
+        clip-path: inset(10% 0 70% 0);
+        transform: translateX(-1px);
+    }
+}
+
+@keyframes glitch-soft-2 {
+    0%, 88%, 100% {
+        clip-path: inset(0 0 0 0);
+        transform: translateX(-1px);
+    }
+
+    90% {
+        clip-path: inset(60% 0 20% 0);
+        transform: translateX(-2px);
+    }
+
+    94% {
+        clip-path: inset(20% 0 60% 0);
+        transform: translateX(1px);
+    }
+}
+
 </style>
 
 
@@ -66,7 +155,9 @@
 <div class="hero">
 
     <div class="container hero-content">
-        <h1>CyberCTF</h1>
+        <img src="/themes/CyberCTF/static/img/logo.svg" class="hero-logo" alt="CyberCTF Logo">
+
+        <h1 class="glitch" data-text="CyberCTF">CyberCTF</h1>
         <div class="typed-text">
             <span id="typed"></span>
         </div>

@@ -1,1 +1,54 @@
-function a(){const t=localStorage.getItem("theme");return t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}function c(t){const r=document.querySelector(".theme-switch i.fas");r.classList.toggle("fa-moon",t==="dark"),r.classList.toggle("fa-sun",t!=="dark")}let e=a();document.documentElement.setAttribute("data-bs-theme",e);window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{e=a(),document.documentElement.setAttribute("data-bs-theme",e),c(e)});window.addEventListener("load",()=>{c(e),document.querySelectorAll(".theme-switch").forEach(t=>{t.addEventListener("click",r=>{e=e==="light"?"dark":"light",document.documentElement.setAttribute("data-bs-theme",e),localStorage.setItem("theme",e),c(e),r.preventDefault()})})});
+(function () {
+
+function getTheme() {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved;
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+}
+
+function updateIcon(theme) {
+    const icon = document.querySelector(".theme-switch i.fas");
+    if (!icon) return; // если переключателя нет — просто выходим
+
+    icon.classList.toggle("fa-moon", theme === "dark");
+    icon.classList.toggle("fa-sun", theme !== "dark");
+}
+
+let theme = getTheme();
+
+document.documentElement.setAttribute("data-bs-theme", theme);
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    theme = getTheme();
+    document.documentElement.setAttribute("data-bs-theme", theme);
+    updateIcon(theme);
+});
+
+window.addEventListener("load", () => {
+
+    updateIcon(theme);
+
+    const switches = document.querySelectorAll(".theme-switch");
+
+    if (!switches.length) return; // если переключателя нет — ничего не делаем
+
+    switches.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+
+            theme = theme === "light" ? "dark" : "light";
+
+            document.documentElement.setAttribute("data-bs-theme", theme);
+            localStorage.setItem("theme", theme);
+
+            updateIcon(theme);
+
+            e.preventDefault();
+        });
+    });
+
+});
+
+})();

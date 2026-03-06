@@ -42,10 +42,10 @@
 <body>
 {% include "components/navbar.html" %}
 
-<button id="sidebarToggle" class="btn btn-outline-light"
+<!-- <button id="sidebarToggle" class="btn btn-outline-light"
         style="position: fixed; top: 15px; left: 15px; z-index:1100;">
     ☰
-</button>
+</button> -->
 
 <main role="main">
   {% block content %}
@@ -68,17 +68,7 @@
 
 {% block scripts %}
   {{ Assets.js("assets/js/page.js") }}
-  <!-- <script>
-    const sidebar = document.getElementById("sidebar");
-    const toggle = document.getElementById("sidebarToggle");
-    const main = document.querySelector("main");
-
-    toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("closed");
-        main.classList.toggle("full");
-    });
-  </script> -->
-<script src="/themes/CyberCTF/static/js/sidebar.js"></script>
+<!-- <script src="/themes/CyberCTF/static/js/sidebar.js"></script> -->
 {% endblock %}
 
 {{ Plugins.scripts }}

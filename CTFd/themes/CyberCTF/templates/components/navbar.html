@@ -1,4 +1,4 @@
-<nav id="sidebar">
+<nav id="sidebar" class="closed">
 
 <style>
 /* ===== SIDEBAR ===== */
@@ -61,22 +61,98 @@
 }
 
 /* ===== TOGGLE BUTTON ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
 
-#sidebarToggle {
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.burger {
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 2200;
-    background: rgba(0,255,255,0.15);
+    width: 50px;
+    height: 50px;
+    background: none;
     border: none;
+    cursor: pointer;
+    z-index: 2200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0,255,255,0.15);
     color: #00ffff;
-    font-size: 20px;
+    font-size: 16px;
     padding: 6px 12px;
     border-radius: 6px;
-    cursor: pointer;
     pointer-events: auto;
     transition: 0.2s ease;
 }
+
+
+.burger > i {
+  background: #00ffff;
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+  display: block;
+  position: absolute;
+  transition: 0.5s;
+}
+
+.burger > i:nth-child(1) {
+  transform: translateY(-10px);
+  animation: itop_out 0.5s ease forwards;
+}
+
+.burger > i:nth-child(3) {
+  transform: translateY(10px);
+  animation: ibottom_out 0.5s ease forwards;
+}
+
+.burger.active > i:nth-child(1) {
+  animation: itop 0.5s ease forwards;
+}
+
+.burger.active > i:nth-child(2) {
+  width: 0px;
+}
+
+.burger.active > i:nth-child(3) {
+  animation: ibottom 0.5s ease forwards;
+}
+
+@keyframes itop {
+  0% {transform: translateY(-10px)}
+  50% {transform: translateY(-17px)}
+  100% {transform: translateY(0px) rotate(45deg)}
+}
+
+@keyframes ibottom {
+  0% {transform: translateY(10px)}
+  50% {transform: translateY(17px)}
+  100% {transform: translateY(0px) rotate(135deg)}
+}
+
+@keyframes itop_out {
+  0% {transform: translateY(0px)}
+  50% {transform: translateY(-14px)}
+  100% {transform: translateY(-10px)}
+}
+
+@keyframes ibottom_out {
+  0% {transform: translateY(0px)}
+  50% {transform: translateY(14px)}
+  100% {transform: translateY(10px)}
+}
+
 
 .sidebar-menu a img {
     max-height: 28px;
@@ -113,15 +189,19 @@
     border-left: 3px solid #00ffff;
 }
 
-#sidebarToggle:hover {
+/* #sidebarToggle:hover {
     background: rgba(0,255,255,0.3);
-}
+} */
 
 /* ===== MAIN CONTENT SHIFT ===== */
 
 main {
-    margin-left: 260px;
+    margin-left: 0px;
     transition: margin-left 0.3s ease;
+}
+
+main.sidebar-open {
+    margin-left: 260px;
 }
 
 main.full {
@@ -250,4 +330,29 @@ hr {
   </div>
 </nav>
 
-<button id="sidebarToggle">☰</button>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<button id="sidebarToggle" class="burger">
+  <i></i>
+  <i></i>
+  <i></i>
+</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const burger = document.querySelector(".burger");
+  const sidebar = document.getElementById("sidebar");
+  const main = document.querySelector("main");
+
+  burger.addEventListener("click", function () {
+
+    burger.classList.toggle("active");
+    sidebar.classList.toggle("closed");
+    main.classList.toggle("sidebar-open");
+
+  });
+
+});
+</script>
+
